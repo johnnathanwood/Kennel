@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./Animal.css"
 
-class AnimalForm extends Component {
+export default class AnimalForm extends Component {
     // Set initial state
     state = {
         animalName: "",
@@ -72,4 +72,3 @@ class AnimalForm extends Component {
     }
 }
 
-export default new AnimalForm()

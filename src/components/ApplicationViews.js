@@ -1,9 +1,9 @@
 import { Route } from 'react-router-dom'
 import React, { Component } from "react"
+import AnimalManager from "../modules/AnimalManager"
 import AnimalList from './animal/AnimalList'
 import AnimalDetail from './animal/AnimalDetail'
 import AnimalForm from './animal/AnimalForm'
-import AnimalManager from "../modules/AnimalManager"
 import LocationList from './location/LocationList'
 import LocationManager from "../modules/LocationManager"
 import EmployeeList from './employee/EmployeeList'
@@ -95,14 +95,16 @@ export default class ApplicationViews extends Component {
                         animals={this.state.animals} />
                 }} />
 
-                {/* // Our shiny new route. We pass employees to the AnimalForm so a dropdown can be populated */}
+                {/* // Our shiny new route. We pass employees to the AnimalForm so a dropdown can be populated  */}
                 <Route path="/animals/new" render={(props) => {
                     return <AnimalForm {...props}
                         addAnimal={this.addAnimal}
                         employees={this.state.employees} />
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
-                    return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals}
+                    return <AnimalDetail {...props}
+                        deleteAnimal={this.deleteAnimal}
+                        animals={this.state.animals}
                     />
                 }} />
                 <Route exact path="/employees" render={(props) => {
