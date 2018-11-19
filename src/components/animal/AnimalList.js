@@ -9,8 +9,10 @@ export default class AnimalList extends Component {
             <React.Fragment>
                 <div className="animalButton">
                     <button type="button"
-                            onClick={()=> this.props.history.push("/animals/new")}
-                            className="btn btn-success">
+                            className="btn btn-success"
+                            onClick={() => {
+                                this.props.history.push("/animals/new")}
+                            }>
                         Admit Animal
                     </button>
                 </div>

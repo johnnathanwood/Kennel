@@ -1,8 +1,13 @@
 import { Route } from 'react-router-dom'
 import React, { Component } from "react"
 import AnimalList from './animal/AnimalList'
+import AnimalDetail from './animal/AnimalDetail'
+import AnimalForm from './animal/AnimalForm'
+import AnimalManager from "../modules/AnimalManager"
 import LocationList from './location/LocationList'
+import LocationManager from "../modules/LocationManager"
 import EmployeeList from './employee/EmployeeList'
+import EmployeeManager from "../modules/EmployeeManager"
 
 
 export default class ApplicationViews extends Component {
@@ -16,18 +21,29 @@ export default class ApplicationViews extends Component {
     componentDidMount() {
         const newState = {}
 
-        fetch("http://localhost:5002/animals")
-            .then(r => r.json())
-            .then(animals => newState.animals = animals)
-            .then(() => fetch("http://localhost:5002/employees")
-                .then(r => r.json()))
-            .then(employees => newState.employees = employees)
-            .then(() => fetch("http://localhost:5002/locations")
-                .then(r => r.json()))
-            .then(locations => newState.locations = locations)
-            .then(() => this.setState(newState))
-    }
+        AnimalManager.getAll().then(allAnimals => {
+            this.setState({
+                animals: allAnimals
+            })
+        })
+        EmployeeManager.getAll().then(allEmployees => {
+            this.setState({
+                employees: allEmployees
+            })
+        })
+        LocationManager.getAll().then(allLocations => {
+            this.setState({
+                locations: allLocations
+            })
+        })
 
+    }
+    addAnimal = (animal) => AnimalManager.post(animal)
+        .then(() => AnimalManager.getAll())
+        .then(animals => this.setState({
+            animals: animals
+        })
+        )
     deleteAnimal = id => {
         return fetch(`http://localhost:5002/animals/${id}`, {
             method: "DELETE"
@@ -74,15 +90,25 @@ export default class ApplicationViews extends Component {
                         deleteLocation={this.deleteLocation} />
                 }} />
                 <Route exact path="/animals" render={(props) => {
-                    return <AnimalList
-                        animals={this.state.animals}
+                    return <AnimalList {...props}
                         deleteAnimal={this.deleteAnimal}
+                        animals={this.state.animals} />
+                }} />
+
+                {/* // Our shiny new route. We pass employees to the AnimalForm so a dropdown can be populated */}
+                <Route path="/animals/new" render={(props) => {
+                    return <AnimalForm {...props}
+                        addAnimal={this.addAnimal}
+                        employees={this.state.employees} />
+                }} />
+                <Route path="/animals/:animalId(\d+)" render={(props) => {
+                    return <AnimalDetail {...props} deleteAnimal={this.deleteAnimal} animals={this.state.animals}
                     />
                 }} />
                 <Route exact path="/employees" render={(props) => {
-                    return <EmployeeList 
-                    employees={this.state.employees} 
-                    deleteEmployee={this.deleteEmployee}/>
+                    return <EmployeeList
+                        employees={this.state.employees}
+                        deleteEmployee={this.deleteEmployee} />
                 }} />
             </React.Fragment>
         )
