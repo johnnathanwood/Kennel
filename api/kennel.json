@@ -1,11 +1,47 @@
 {
-    "employees": [
-        { "id": 1, "name": "Jessica Younker" },
-        { "id": 2, "name": "Jordan Nelson" },
-        { "id": 3, "name": "Zoe LeBlanc" },
-        { "id": 4, "name": "Blaise Roberts" }
-    ],
-    "locations": [],
-    "animals": [],
-    "owners": []
+  "employees": [
+    {
+      "id": 1,
+      "name": "Jessica Younker"
+    },
+    {
+      "id": 2,
+      "name": "Jordan Nelson"
+    },
+    {
+      "id": 3,
+      "name": "Zoe LeBlanc"
+    },
+    {
+      "id": 4,
+      "name": "Blaise Roberts"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Nashville North",
+      "address": "500 Circle Way"
+    },
+    {
+      "id": 2,
+      "name": "Nashville West",
+      "address": "500 Square Way"
+    }
+  ],
+  "animals": [
+    {
+      "id": 2,
+      "name": "Jack"
+    },
+    {
+      "id": 3,
+      "name": "Angus"
+    },
+    {
+      "id": 4,
+      "name": "Henley"
+    }
+  ],
+  "owners": []
 }

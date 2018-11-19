@@ -1,6 +1,7 @@
+
 import React, { Component } from "react"
-
-
+import "./Animal.css"
+import AnimalCard from "./AnimalCard"
 
 export default class AnimalList extends Component {
     render () {
@@ -14,6 +15,11 @@ export default class AnimalList extends Component {
                     </button>
                 </div>
                 <section className="animals">
+                {
+                    this.props.animals.map(animal =>
+                        <AnimalCard key={animal.id} animal={animal} {...this.props} />
+                    )
+                }
                 </section>
             </React.Fragment>
         )
