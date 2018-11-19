@@ -1,20 +1,27 @@
-import React, { Component } from 'react'
 
+import React, { Component } from "react"
+import "./Employee.css"
+import EmployeeCard from "./EmployeeCard"
 
-class EmployeeList extends Component {
-    render() {
+export default class EmployeeList extends Component {
+    render () {
         return (
-            <section className="employees">
-            {
-                this.props.employees.map(employee =>
-                    <div key={employee.id}>
-                        {employee.name}
-                    </div>
-                )
-            }
-            </section>
+            <React.Fragment>
+                <div className="employeeButton">
+                    <button type="button"
+                            onClick={()=> this.props.history.push("/employees/new")}
+                            className="btn btn-success">
+                        New Employee
+                    </button>
+                </div>
+                <section className="employees">
+                {
+                    this.props.employees.map(employee =>
+                        <EmployeeCard key={employee.id} employee={employee} {...this.props} />
+                    )
+                }
+                </section>
+            </React.Fragment>
         )
     }
 }
-
-export default EmployeeList
