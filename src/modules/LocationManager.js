@@ -6,5 +6,14 @@ export default {
   },
   getAll() {
     return fetch(`${remoteURL}/locations`).then(e => e.json())
+  },
+  push(newLocation) {
+    return fetch(`${remoteURL}/locations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newLocation)
+    }).then(data => data.json())
   }
 }

@@ -10,18 +10,18 @@ export default class LocationDetail extends Component {
             user clicked on by looking at the `this.props.animals`
             collection that was passed down from ApplicationViews
         */
-        const location = this.props.locations.find(a => a.id === parseInt(this.props.match.params.locationId)) || {}
+        const kennelLocations = this.props.locations.find(a => a.id === parseInt(this.props.match.params.locationId)) || {}
 
         return (
             <section className="location">
-                <div key={location.id} className="card">
+                <div key={kennelLocations.id} className="card">
                     <div className="card-body">
                         <h4 className="card-title">
-                            {location.name}
+                            {kennelLocations.name}
                         </h4>
-                        <h6 className="card-title">{location.address}</h6>
+                        <h6 className="card-title">{kennelLocations.address}</h6>
                         <a href=" "
-                            onClick={() => this.props.deleteLocation(location.id)
+                            onClick={() => this.props.deleteLocation(kennelLocations.id)
                                 .then(() => this.props.history.push("/locations"))}
                             className="card-link">Delete</a>
                     </div>

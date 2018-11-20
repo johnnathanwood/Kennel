@@ -6,9 +6,11 @@ import AnimalDetail from './animal/AnimalDetail'
 import AnimalForm from './animal/AnimalForm'
 import LocationList from './location/LocationList'
 import LocationDetail from "./location/LocationDetail"
+import LocationForm from "./location/LocationForm"
 import LocationManager from "../modules/LocationManager"
 import EmployeeList from './employee/EmployeeList'
 import EmployeeDetail from './employee/EmployeeDetail'
+import EmployeeForm from './employee/EmployeeForm'
 import EmployeeManager from "../modules/EmployeeManager"
 
 
@@ -58,6 +60,12 @@ export default class ApplicationViews extends Component {
             })
             )
     }
+    addLocation = (location) => LocationManager.post(location)
+        .then(() => LocationManager.getAll())
+        .then(locations => this.setState({
+            locations: locations
+        })
+        )
     deleteLocation = id => {
         return fetch(`http://localhost:5002/locations/${id}`, {
             method: "DELETE"
@@ -70,6 +78,12 @@ export default class ApplicationViews extends Component {
             })
             )
     }
+    addEmployee = (employee) => EmployeeManager.post(employee)
+    .then(() => EmployeeManager.getAll())
+    .then(employees => this.setState({
+        employees: employees
+    })
+    )
     deleteEmployee = id => {
         return fetch(`http://localhost:5002/employees/${id}`, {
             method: "DELETE"
@@ -87,9 +101,14 @@ export default class ApplicationViews extends Component {
         return (
             <React.Fragment>
                 <Route exact path="/" render={(props) => {
-                    return <LocationList
+                    return <LocationList {...props}
                         locations={this.state.locations}
                         deleteLocation={this.deleteLocation} />
+                }} />
+                <Route path="/locations/new" render={(props) => {
+                    return <LocationForm {...props}
+                        addLocation={this.addLocation}
+                        employees={this.state.employees} />
                 }} />
                 <Route path="/locations/:locationId(\d+)" render={(props) => {
                     return <LocationDetail {...props}
@@ -116,9 +135,14 @@ export default class ApplicationViews extends Component {
                     />
                 }} />
                 <Route exact path="/employees" render={(props) => {
-                    return <EmployeeList
+                    return <EmployeeList {...props}
                         employees={this.state.employees}
                         deleteEmployee={this.deleteEmployee} />
+                }} />
+                 <Route path="/employees/new" render={(props) => {
+                    return <EmployeeForm {...props}
+                        addEmployee={this.addEmployee}
+                        />
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     return <EmployeeDetail {...props}

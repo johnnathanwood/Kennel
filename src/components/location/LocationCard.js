@@ -5,13 +5,13 @@ import "./Location.css"
 export default class LocationCard extends Component {
     render() {
         return (
-            <div key={this.props.location.id} className="card">
+            <div key={this.props.kennelLocations.id} className="card">
                 <div className="card-body">
                     <h5 className="card-title">
-                        {this.props.location.name}
-                        <Link className="nav-link" to={`/locations/${this.props.location.id}`}>Details</Link>
+                        {this.props.kennelLocations.name}
+                        <Link className="nav-link" to={`/locations/${this.props.kennelLocations.id}`}>Details</Link>
                         <a href=" "
-                            onClick={() => this.props.deleteLocation(this.props.location.id)}
+                            onClick={() => this.props.deleteLocation(this.props.kennelLocations.id)}
                             className="card-link">MOVED</a>
                     </h5>
                 </div>
