@@ -5,8 +5,10 @@ import AnimalList from './animal/AnimalList'
 import AnimalDetail from './animal/AnimalDetail'
 import AnimalForm from './animal/AnimalForm'
 import LocationList from './location/LocationList'
+import LocationDetail from "./location/LocationDetail"
 import LocationManager from "../modules/LocationManager"
 import EmployeeList from './employee/EmployeeList'
+import EmployeeDetail from './employee/EmployeeDetail'
 import EmployeeManager from "../modules/EmployeeManager"
 
 
@@ -89,6 +91,12 @@ export default class ApplicationViews extends Component {
                         locations={this.state.locations}
                         deleteLocation={this.deleteLocation} />
                 }} />
+                <Route path="/locations/:locationId(\d+)" render={(props) => {
+                    return <LocationDetail {...props}
+                        deleteLocation={this.deleteLocation}
+                        locations={this.state.locations}
+                    />
+                }} />
                 <Route exact path="/animals" render={(props) => {
                     return <AnimalList {...props}
                         deleteAnimal={this.deleteAnimal}
@@ -111,6 +119,12 @@ export default class ApplicationViews extends Component {
                     return <EmployeeList
                         employees={this.state.employees}
                         deleteEmployee={this.deleteEmployee} />
+                }} />
+                <Route path="/employees/:employeeId(\d+)" render={(props) => {
+                    return <EmployeeDetail {...props}
+                        deleteEmployee={this.deleteEmployee}
+                        employees={this.state.employees}
+                    />
                 }} />
             </React.Fragment>
         )

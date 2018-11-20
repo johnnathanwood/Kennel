@@ -41,12 +41,6 @@
     {
       "id": 4,
       "name": "Henley"
-    },
-    {
-      "name": "Jake the Dog",
-      "breed": "human",
-      "employeeId": 4,
-      "id": 5
     }
   ],
   "owners": []
