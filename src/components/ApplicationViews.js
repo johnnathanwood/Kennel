@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from "react-router-dom"
 import React, { Component } from "react"
 import AnimalManager from "../modules/AnimalManager"
 import AnimalList from './animal/AnimalList'
@@ -12,9 +12,10 @@ import EmployeeList from './employee/EmployeeList'
 import EmployeeDetail from './employee/EmployeeDetail'
 import EmployeeForm from './employee/EmployeeForm'
 import EmployeeManager from "../modules/EmployeeManager"
-
+import Login from "./login/Login"
 
 export default class ApplicationViews extends Component {
+isAuthenticated = () => sessionStorage.getItem("credentials") !== null
     state = {
         animals: [],
         employees: [],
@@ -23,8 +24,10 @@ export default class ApplicationViews extends Component {
     }
 
     componentDidMount() {
+        this.setState({ loading: true })
         const newState = {}
 
+        
         AnimalManager.getAll().then(allAnimals => {
             this.setState({
                 animals: allAnimals
@@ -96,15 +99,18 @@ export default class ApplicationViews extends Component {
             })
             )
     }
+    
 
     render() {
         return (
             <React.Fragment>
+                 <Route path="/login" component={Login} />
                 <Route exact path="/" render={(props) => {
                     return <LocationList {...props}
                         locations={this.state.locations}
                         deleteLocation={this.deleteLocation} />
                 }} />
+                
                 <Route path="/locations/new" render={(props) => {
                     return <LocationForm {...props}
                         addLocation={this.addLocation}
@@ -136,13 +142,15 @@ export default class ApplicationViews extends Component {
                 }} />
                 <Route exact path="/employees" render={(props) => {
                     return <EmployeeList {...props}
-                        employees={this.state.employees}
-                        deleteEmployee={this.deleteEmployee} />
+                        employees={this.state.employees}/>
                 }} />
                  <Route path="/employees/new" render={(props) => {
+                      if (this.isAuthenticated()) {
                     return <EmployeeForm {...props}
-                        addEmployee={this.addEmployee}
-                        />
+                        addEmployee={this.addEmployee}/>
+                    } else {
+                        return <Redirect to="/login" />
+                        }
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
                     return <EmployeeDetail {...props}

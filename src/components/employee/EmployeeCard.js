@@ -12,9 +12,6 @@ export default class EmployeeCard extends Component {
                         <img src={person} className="icon--person" />
                         {this.props.employee.name}
                         <Link className="nav-link" to={`/employees/${this.props.employee.id}`}>Details</Link>
-                        <a href="#"
-                            onClick={() => this.props.deleteEmployee(this.props.employee.id)}
-                            className="card-link">SACRIFICE</a>
                     </h5>
                 </div>
             </div>
