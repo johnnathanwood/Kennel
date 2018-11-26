@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import AnimalManager from "../modules/AnimalManager"
 import AnimalList from './animal/AnimalList'
 import AnimalDetail from './animal/AnimalDetail'
+import AnimalDetailBasic from './animal/AnimalDetailBasic'
 import AnimalForm from './animal/AnimalForm'
 import LocationList from './location/LocationList'
 import LocationDetail from "./location/LocationDetail"
@@ -10,6 +11,7 @@ import LocationForm from "./location/LocationForm"
 import LocationManager from "../modules/LocationManager"
 import EmployeeList from './employee/EmployeeList'
 import EmployeeDetail from './employee/EmployeeDetail'
+import EmployeeDetailBasic from './employee/EmployeeDetailBasic'
 import EmployeeForm from './employee/EmployeeForm'
 import EmployeeManager from "../modules/EmployeeManager"
 import Login from "./login/Login"
@@ -135,10 +137,16 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                         employees={this.state.employees} />
                 }} />
                 <Route path="/animals/:animalId(\d+)" render={(props) => {
+                     if (this.isAuthenticated()) {
                     return <AnimalDetail {...props}
                         deleteAnimal={this.deleteAnimal}
                         animals={this.state.animals}
                     />
+                     }else{
+                         return <AnimalDetailBasic {...props}
+                         animals={this.state.animals}
+                         />
+                     }
                 }} />
                 <Route exact path="/employees" render={(props) => {
                     return <EmployeeList {...props}
@@ -153,10 +161,16 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                         }
                 }} />
                 <Route path="/employees/:employeeId(\d+)" render={(props) => {
+                    if (this.isAuthenticated()) {
                     return <EmployeeDetail {...props}
                         deleteEmployee={this.deleteEmployee}
                         employees={this.state.employees}
                     />
+                    }else{
+                    return <EmployeeDetailBasic {...props}
+                    employees={this.state.employees}
+                    />
+                    }
                 }} />
             </React.Fragment>
         )
