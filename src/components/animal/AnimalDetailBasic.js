@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./Animal.css"
 import dog from "./DogIcon.png"
+import EmployeeCard from "../employee/EmployeeCard";
 
 
 export default class AnimalDetailBasic extends Component {

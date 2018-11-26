@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import "./Employee.css"
 import person from "./PersonIcon.png"
+import AnimalCard from "../animal/AnimalCard"   
 
 
 
@@ -21,6 +22,14 @@ export default class EmployeeDetail extends Component {
                             <img src={person} className="icon--person" />
                             {employee.name}
                         </h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Caretaker For</h6>
+                            <div className="animals--caretaker">
+                            {
+                                this.props.animals
+                                    .filter(anml => anml.employeeId === employee.id)
+                                    .map(anml => <AnimalCard key={anml.id} animal={anml} {...this.props} />)
+                            }
+                            </div>
                         <a href=" "
                             onClick={() => this.props.deleteEmployee(employee.id)
                                             .then(() => this.props.history.push("/employees"))}

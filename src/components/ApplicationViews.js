@@ -164,10 +164,12 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                     if (this.isAuthenticated()) {
                     return <EmployeeDetail {...props}
                         deleteEmployee={this.deleteEmployee}
+                        animals={this.state.animals}
                         employees={this.state.employees}
                     />
                     }else{
                     return <EmployeeDetailBasic {...props}
+                    animals={this.state.animals}
                     employees={this.state.employees}
                     />
                     }
