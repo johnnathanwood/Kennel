@@ -16,6 +16,23 @@
       "name": "Jessica Wood",
       "animalId": 3,
       "id": 5
+    },
+    {
+      "name": "Zack Brown",
+      "animalId": 4,
+      "id": 6
+    },
+    {
+      "name": "Grenn Colbs ",
+      "animalId": 4,
+      "locationId": 1,
+      "id": 7
+    },
+    {
+      "name": "Justin GoodmanCave",
+      "animalId": 1,
+      "locationId": 2,
+      "id": 8
     }
   ],
   "locations": [
@@ -54,6 +71,12 @@
       "breed": "Dog",
       "employeeId": 5,
       "id": 4
+    },
+    {
+      "name": "Jacob",
+      "breed": "Cat",
+      "employeeId": 6,
+      "id": 5
     }
   ],
   "owners": []

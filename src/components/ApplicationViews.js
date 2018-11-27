@@ -121,6 +121,7 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                 <Route path="/locations/:locationId(\d+)" render={(props) => {
                     return <LocationDetail {...props}
                         deleteLocation={this.deleteLocation}
+                        employees={this.state.employees}
                         locations={this.state.locations}
                     />
                 }} />
@@ -158,7 +159,8 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                       if (this.isAuthenticated()) {
                     return <EmployeeForm {...props}
                         addEmployee={this.addEmployee}
-                        animals={this.state.animals}/>
+                        animals={this.state.animals}
+                        locations={this.state.locations}/>
                     } else {
                         return <Redirect to="/login" />
                         }

@@ -21,12 +21,13 @@ export default class EmployeeForm extends Component {
      */
     constructNewEmployee= evt => {
         evt.preventDefault()
-        if (this.state.employeeName === "") {
-            window.alert("Please fill out")
+        if (this.state.employeeName === "" && this.state.animal === "") {
+            window.alert("Hey!\nFill everything out before continuing")
         } else {
             const employee = {
                 name: this.state.employeeName,
-                animalId: this.props.animals.find(e => e.name === this.state.animal).id
+                animalId: this.props.animals.find(e => e.name === this.state.animal).id,
+                locationId: this.props.locations.find(e => e.name === this.state.location).id
             }
 
             // Create the animal and redirect user to animal list
@@ -53,6 +54,16 @@ export default class EmployeeForm extends Component {
                             <option value="">Select an animal</option>
                         {
                             this.props.animals.map(e => <option key={e.id} id={e.id}>{e.name}</option>)
+                        }
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="location">Assign location</label>
+                        <select defaultValue="" name="location" id="location"
+                                onChange={this.handleFieldChange}>
+                            <option value="">Select an location</option>
+                        {
+                            this.props.locations.map(e => <option key={e.id} id={e.id}>{e.name}</option>)
                         }
                         </select>
                     </div>
