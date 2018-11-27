@@ -11,6 +11,11 @@
     {
       "id": 4,
       "name": "Blaise Roberts"
+    },
+    {
+      "name": "Jessica Wood",
+      "animalId": 3,
+      "id": 5
     }
   ],
   "locations": [
@@ -27,28 +32,28 @@
   ],
   "animals": [
     {
-      "id": 2,
-      "name": "Jack"
-    },
-    {
-      "id": 3,
-      "name": "Angus"
-    },
-    {
-      "id": 4,
-      "name": "Henley"
-    },
-    {
-      "name": "Tobias ",
-      "breed": "German Shorthaired Pointer",
+      "name": "Gus",
+      "breed": "Bacon ",
       "employeeId": 4,
-      "id": 5
+      "id": 1
     },
     {
-      "name": "Jason Big",
-      "breed": "Cat",
+      "name": "Andy",
+      "breed": "Turtle",
       "employeeId": 2,
-      "id": 6
+      "id": 2
+    },
+    {
+      "name": "Johnny",
+      "breed": "Hamster",
+      "employeeId": 3,
+      "id": 3
+    },
+    {
+      "name": "Finn",
+      "breed": "Dog",
+      "employeeId": 5,
+      "id": 4
     }
   ],
   "owners": []

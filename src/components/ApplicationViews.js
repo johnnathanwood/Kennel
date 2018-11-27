@@ -140,11 +140,13 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                      if (this.isAuthenticated()) {
                     return <AnimalDetail {...props}
                         deleteAnimal={this.deleteAnimal}
+                        employees={this.state.employees}
                         animals={this.state.animals}
                     />
                      }else{
                          return <AnimalDetailBasic {...props}
                          animals={this.state.animals}
+                         employees={this.state.employees}
                          />
                      }
                 }} />
@@ -155,7 +157,8 @@ isAuthenticated = () => sessionStorage.getItem("credentials") !== null
                  <Route path="/employees/new" render={(props) => {
                       if (this.isAuthenticated()) {
                     return <EmployeeForm {...props}
-                        addEmployee={this.addEmployee}/>
+                        addEmployee={this.addEmployee}
+                        animals={this.state.animals}/>
                     } else {
                         return <Redirect to="/login" />
                         }

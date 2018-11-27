@@ -4,7 +4,8 @@ import "./Employee.css"
 export default class EmployeeForm extends Component {
     // Set initial state
     state = {
-        employeeName: ""
+        employeeName: "",
+        animal: ""
     }
 
     // Update state whenever an input field is edited
@@ -25,6 +26,7 @@ export default class EmployeeForm extends Component {
         } else {
             const employee = {
                 name: this.state.employeeName,
+                animalId: this.props.animals.find(e => e.name === this.state.animal).id
             }
 
             // Create the animal and redirect user to animal list
@@ -43,6 +45,16 @@ export default class EmployeeForm extends Component {
                                onChange={this.handleFieldChange}
                                id="employeeName"
                                placeholder="Employee name" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="animal">Assign animal</label>
+                        <select defaultValue="" name="animal" id="animal"
+                                onChange={this.handleFieldChange}>
+                            <option value="">Select an animal</option>
+                        {
+                            this.props.animals.map(e => <option key={e.id} id={e.id}>{e.name}</option>)
+                        }
+                        </select>
                     </div>
                     <button type="submit" onClick={this.constructNewEmployee} className="btn btn-primary">Submit</button>
                 </form>

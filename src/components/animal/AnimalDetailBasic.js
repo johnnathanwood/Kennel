@@ -22,6 +22,7 @@ export default class AnimalDetailBasic extends Component {
                             {animal.name}
                         </h4>
                         <h6 className="card-title">{animal.breed}</h6>
+                        
                     </div>
                 </div>
             </section>
